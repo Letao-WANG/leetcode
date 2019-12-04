@@ -1,0 +1,42 @@
+class Solution 
+{
+    public int lengthOfLongestSubstring(String s) 
+    {
+        /*variable*/
+        int taille = s.length();
+        String[] tab = new String[taille];
+        int j=0, max=0;
+        
+        /*init*/
+        for (int i=0;i<taille;i++)
+            tab[i] = "";
+        
+        /*debut*/
+        for (int i=0;i<taille;i++)
+        {
+            if (! trouver(tab[j],s.charAt(i)))
+                tab[j] += s.charAt(i);
+            else    
+            {
+                j++;
+                tab[j] += s.charAt(i);
+            }
+        }
+        
+        /*calculer le max*/
+        for (int i=0;i<taille;i++)
+            max = Math.max(max,tab[i].length());
+        return max;
+    }
+    
+    static boolean trouver(String str, char c)
+    {
+        boolean bOK = false;
+        for (int i=0;i<str.length();i++)
+        {
+            if (str.charAt(i) == c)
+                bOK = true;
+        }
+        return bOK;
+    }
+}
